@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise do Mercado de Terras Raras</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #003F5C;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container.left {
+            left: 0;
+        }
+        .timeline-container.right {
+            left: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -14px;
+            background-color: white;
+            border: 4px solid #EF5675;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-container.right::after {
+            left: -11px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#003F5C] text-white text-center py-12 px-4">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight">O Motor Invisível da Tecnologia</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Uma análise aprofundada do mercado estratégico de Materiais de Terras Raras (2020-2025)</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="mb-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-[#003F5C] mb-4">O que são Terras Raras?</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Apesar do nome, os 17 elementos de terras raras não são tão "raros", mas a sua extração e processamento são complexos e concentrados. Eles são componentes vitais e insubstituíveis em tecnologias de ponta, desde smartphones e veículos elétricos até turbinas eólicas e equipamentos de defesa, tornando o seu mercado um ponto fulcral na geopolítica e na inovação global.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-5xl font-extrabold text-[#EF5675]">🔋</div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Transição Energética</h3>
+                    <p>Essenciais para os ímanes de alto desempenho em veículos elétricos (EVs) e turbinas eólicas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-5xl font-extrabold text-[#7A5195]">📱</div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Eletrónica de Consumo</h3>
+                    <p>Utilizados em ecrãs, altifalantes e componentes de telemóveis, computadores e televisores.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-5xl font-extrabold text-[#FFA600]">🛡️</div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Defesa e Aeroespacial</h3>
+                    <p>Componentes críticos em sistemas de mísseis, jatos, drones e equipamentos de comunicação.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="price-evolution" class="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-2">A Escalada de Preços Impulsionada pela Procura</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">A crescente procura por tecnologias verdes e a instabilidade geopolítica criaram uma volatilidade significativa nos preços dos principais elementos de terras raras. O gráfico abaixo ilustra a evolução dos preços do Neodímio, Disprósio e Lantânio, com uma projeção para 2025, refletindo a tensão entre oferta e procura.</p>
+            <div class="chart-container">
+                <canvas id="priceChart"></canvas>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
+            <section id="production-share" class="lg:col-span-3 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-2">Domínio Geopolítico: A Produção Global</h2>
+                 <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">O controlo da cadeia de fornecimento de terras raras é uma ferramenta estratégica. A China mantém uma posição dominante, responsável por mais de 70% da produção global em 2023. Esta concentração impulsiona os esforços de países como os EUA e a Austrália para diversificar as fontes e reduzir a dependência.</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="productionChart"></canvas>
+                </div>
+            </section>
+            <section id="key-players" class="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                 <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Principais Players do Setor</h2>
+                 <div class="space-y-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h3 class="text-xl font-bold text-[#7A5195]">Lynas Rare Earths</h3>
+                        <p class="font-semibold text-gray-700">🇦🇺 Austrália</p>
+                        <p class="text-gray-600 mt-1">A maior produtora de terras raras fora da China, com operações de mineração na Austrália e processamento na Malásia e EUA.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h3 class="text-xl font-bold text-[#EF5675]">MP Materials</h3>
+                        <p class="font-semibold text-gray-700">🇺🇸 Estados Unidos</p>
+                        <p class="text-gray-600 mt-1">Opera a mina Mountain Pass na Califórnia, revitalizando a produção americana e focando-se na criação de uma cadeia de fornecimento doméstica.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h3 class="text-xl font-bold text-[#FFA600]">China Northern Rare Earth Group</h3>
+                        <p class="font-semibold text-gray-700">🇨🇳 China</p>
+                        <p class="text-gray-600 mt-1">Uma das maiores empresas estatais da China, domina a produção de elementos leves e desempenha um papel central na política industrial do país.</p>
+                    </div>
+                 </div>
+            </section>
+        </div>
+        
+        <section id="timeline" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-12">Eventos Relevantes que Moldaram o Mercado</h2>
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content shadow-md">
+                        <h3 class="font-bold text-xl text-[#7A5195]">2020</h3>
+                        <p>A pandemia de COVID-19 causa disrupções nas cadeias de fornecimento globais, evidenciando a fragilidade da dependência de poucos fornecedores de terras raras.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content shadow-md">
+                        <h3 class="font-bold text-xl text-[#BC5090]">2021</h3>
+                        <p>Aceleração massiva na adoção de veículos elétricos (EVs) a nível mundial dispara a procura por Neodímio e Disprósio, essenciais para os motores elétricos.</p>
+                    </div>
+                </div>
+                 <div class="timeline-container left">
+                    <div class="timeline-content shadow-md">
+                        <h3 class="font-bold text-xl text-[#EF5675]">2022</h3>
+                        <p>Tensões geopolíticas aumentam. A China sinaliza a possibilidade de usar o seu domínio em terras raras como alavanca económica, impondo controlos mais apertados à exportação.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content shadow-md">
+                        <h3 class="font-bold text-xl text-[#FF764A]">2023</h3>
+                        <p>EUA e Austrália anunciam investimentos estratégicos e subsídios para expandir a capacidade de mineração e processamento doméstico, visando a autossuficiência.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content shadow-md">
+                        <h3 class="font-bold text-xl text-[#FFA600]">2024-2025 (Projeção)</h3>
+                        <p>Espera-se a entrada em operação de novas minas e instalações de processamento no Ocidente, enquanto a procura continua a crescer, mantendo a pressão sobre os preços e a oferta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-insight" class="bg-[#F3F4F6] p-6 md:p-8 rounded-lg shadow-inner mb-16 border-t-4 border-[#7A5195]">
+            <h2 class="text-3xl font-bold text-center text-[#7A5195] mb-4">✨ Insights de Mercado em Tempo Real (Powered by Gemini AI)</h2>
+            <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">Gere um resumo atualizado sobre as tendências de preços e notícias de mercado para um elemento de terras raras específico, utilizando dados em tempo real da web.</p>
+
+            <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md flex flex-col space-y-4">
+                <label for="rareEarthSelect" class="text-lg font-semibold text-[#003F5C]">Selecione o Elemento:</label>
+                <select id="rareEarthSelect" class="p-3 border border-gray-300 rounded-lg focus:ring-[#EF5675] focus:border-[#EF5675]">
+                    <option value="Neodymium">Neodímio (Nd)</option>
+                    <option value="Dysprosium">Disprósio (Dy)</option>
+                    <option value="Lanthanum">Lantânio (La)</option>
+                    <option value="Praseodymium">Praseodímio (Pr)</option>
+                </select>
+
+                <button id="generateBriefingBtn" class="bg-[#EF5675] text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-[#BC5090] transition duration-300 transform hover:scale-105 disabled:bg-gray-400">
+                    Gerar Briefing de Mercado ✨
+                </button>
+
+                <div id="loadingIndicator" class="hidden text-center text-[#003F5C] font-semibold mt-4">
+                    <div class="animate-spin inline-block w-6 h-6 border-4 border-t-4 border-gray-200 border-t-[#EF5675] rounded-full"></div>
+                    <p class="mt-2">A Analisar o Mercado...</p>
+                </div>
+            </div>
+
+            <div id="briefingOutput" class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl hidden">
+                <h3 class="text-2xl font-bold text-[#003F5C] mb-4 border-b pb-2">Resultado da Análise</h3>
+                <p id="briefingText" class="text-gray-700 leading-relaxed mb-4"></p>
+                <div id="briefingSources" class="text-sm text-gray-500 border-t pt-2"></div>
+            </div>
+        </section>
+
+        <section id="analysis" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Análise Estratégica e Implicações Futuras</h2>
+            <div class="max-w-4xl mx-auto space-y-6 text-lg text-gray-700">
+                <p><span class="font-bold text-[#003F5C]">Interpretação Económica:</span> A correlação direta entre a subida dos preços e a procura por tecnologias de transição energética é clara. Cada carro elétrico ou turbina eólica fabricada aumenta a pressão sobre uma oferta que luta para acompanhar o ritmo. Esta dinâmica transforma as terras raras num barómetro da economia verde.</p>
+                <p><span class="font-bold text-[#003F5C]">Impacto Geopolítico:</span> A concentração da produção na China não é apenas uma questão económica, mas de segurança nacional para muitos países. A "guerra" pelo controlo das terras raras é uma faceta da rivalidade tecnológica entre as grandes potências, com movimentos para criar cadeias de fornecimento alternativas e mais resilientes.</p>
+                <p><span class="font-bold text-[#003F5C]">Oportunidades e Desafios:</span> A crise na oferta cria oportunidades para novos players e para a inovação em reciclagem e substituição de materiais. No entanto, os desafios ambientais e os elevados custos de capital associados à mineração e processamento de terras raras representam barreiras significativas à diversificação do mercado a curto prazo.</p>
+            </div>
+             <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold text-[#003F5C]">Conclusão</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">O mercado de terras raras permanecerá no centro das atenções globais. A sua evolução será ditada pelo equilíbrio entre o avanço tecnológico, as estratégias geopolíticas e a urgência da sustentabilidade. A corrida para garantir o fornecimento destes minerais críticos irá moldar o futuro da tecnologia e da economia mundial.</p>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-6 bg-gray-200 mt-16">
+        <p class="text-gray-600">Infográfico gerado em Outubro de 2025.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const processLabel = (label) => {
+                if (typeof label === 'string' && label.length > 16) {
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + word).length > 16) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    });
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            };
+
+            const sharedChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#333',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#333' },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: { color: '#333' },
+                        grid: { color: '#e0e0e0' }
+                    }
+                }
+            };
+
+            const priceCtx = document.getElementById('priceChart').getContext('2d');
+            new Chart(priceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024', '2025 (Proj.)'],
+                    datasets: [
+                        {
+                            label: 'Neodímio (USD/kg)',
+                            data: [60, 120, 200, 150, 160, 180],
+                            borderColor: '#EF5675',
+                            backgroundColor: 'rgba(239, 86, 117, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Disprósio (USD/kg)',
+                            data: [300, 500, 700, 600, 650, 750],
+                            borderColor: '#7A5195',
+                            backgroundColor: 'rgba(122, 81, 149, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Lantânio (USD/kg)',
+                            data: [3, 5, 8, 7, 9, 10],
+                            borderColor: '#FFA600',
+                            backgroundColor: 'rgba(255, 166, 0, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    ...sharedChartOptions,
+                     scales: {
+                        y: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Preço em USD/kg (Escala Logarítmica)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            const productionCtx = document.getElementById('productionChart').getContext('2d');
+            new Chart(productionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['China', 'EUA', 'Austrália', 'Myanmar', 'Outros'],
+                    datasets: [{
+                        label: 'Produção Global de Terras Raras (2023)',
+                        data: [70, 12, 6, 4, 8],
+                        backgroundColor: ['#003F5C', '#7A5195', '#EF5675', '#FFA600', '#BC5090'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#333',
+                                font: { size: 14 },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // --- Gemini API Integration Logic ---
+
+            const apiKey = ""; 
+            const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";
+
+            const briefingOutput = document.getElementById('briefingOutput');
+            const briefingText = document.getElementById('briefingText');
+            const briefingSources = document.getElementById('briefingSources');
+            const rareEarthSelect = document.getElementById('rareEarthSelect');
+            const generateBriefingBtn = document.getElementById('generateBriefingBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+
+            // Função de repetição com backoff exponencial
+            const fetchWithRetry = async (url, options, maxRetries = 5) => {
+                for (let i = 0; i < maxRetries; i++) {
+                    try {
+                        const response = await fetch(url, options);
+                        if (response.ok) {
+                            return response;
+                        }
+                        // Lançar erro para tentar novamente em caso de 429 ou outros erros de servidor
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    } catch (error) {
+                        if (i < maxRetries - 1) {
+                            // Espera exponencial: 2^i segundos
+                            const delay = Math.pow(2, i) * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                        } else {
+                            throw error; // Última tentativa falhou
+                        }
+                    }
+                }
+            };
+
+            const generateBriefing = async () => {
+                const selectedElement = rareEarthSelect.value;
+                const userQuery = `Latest market news, price analysis, and key drivers for ${selectedElement} Rare Earth Element. Provide a concise, single-paragraph summary.`;
+                const systemPrompt = "Act as a world-class Rare Earth Material market analyst. Provide a neutral, objective, and concise single-paragraph summary of the key findings regarding price and supply trends for the requested rare earth element based on the latest web data.";
+
+                briefingOutput.classList.add('hidden');
+                briefingText.innerHTML = '';
+                briefingSources.innerHTML = '';
+                loadingIndicator.classList.remove('hidden');
+                generateBriefingBtn.disabled = true;
+
+                try {
+                    const payload = {
+                        contents: [{ parts: [{ text: userQuery }] }],
+                        tools: [{ "google_search": {} }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] },
+                    };
+
+                    const response = await fetchWithRetry(`${apiUrl}?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const text = candidate.content.parts[0].text;
+                        briefingText.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); 
+
+                        let sources = [];
+                        const groundingMetadata = candidate.groundingMetadata;
+
+                        if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                            sources = groundingMetadata.groundingAttributions
+                                .map(attribution => ({
+                                    uri: attribution.web?.uri,
+                                    title: attribution.web?.title,
+                                }))
+                                .filter(source => source.uri && source.title);
+                        }
+
+                        if (sources.length > 0) {
+                            briefingSources.innerHTML = '<p class="font-semibold mt-4 mb-2">Fontes Consultadas:</p>';
+                            const ul = document.createElement('ul');
+                            ul.className = 'list-disc list-inside';
+                            sources.forEach(source => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `<a href="${source.uri}" target="_blank" class="text-[#EF5675] hover:underline">${source.title}</a>`;
+                                ul.appendChild(li);
+                            });
+                            briefingSources.appendChild(ul);
+                        } else {
+                            briefingSources.innerHTML = '<p class="mt-4">Não foram encontradas fontes de pesquisa específicas para citar.</p>';
+                        }
+
+                        briefingOutput.classList.remove('hidden');
+
+                    } else {
+                        briefingText.textContent = "Lamentamos, não foi possível gerar o briefing. Tente novamente mais tarde.";
+                        briefingOutput.classList.remove('hidden');
+                    }
+
+                } catch (error) {
+                    console.error("Erro ao chamar a API Gemini:", error);
+                    briefingText.textContent = "Ocorreu um erro na comunicação. Por favor, verifique a sua ligação ou tente mais tarde.";
+                    briefingOutput.classList.remove('hidden');
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                    generateBriefingBtn.disabled = false;
+                }
+            };
+
+            generateBriefingBtn.addEventListener('click', generateBriefing);
+        });
+    </script>
+
+</body>
+</html>
